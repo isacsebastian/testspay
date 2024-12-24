@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template</title>
+</head>
+<body>
+    <header>
+        <div id="header-content"></div>
+    </header>
+    <main>
+        <div id="main-content"></div>
+    </main>
+    <footer>
+        <div id="footer-content"></div>
+    </footer>
+
+    <script>
+        function loadHTML(elementId, url) {
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(elementId).innerHTML = data;
+                })
+                .catch(error => console.error('Error loading HTML:', error));
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            loadHTML('header-content', 'header.html');
+            loadHTML('main-content', 'main.html');
+            loadHTML('footer-content', 'footer.html');
+        });
+    </script>
+</body>
+</html>

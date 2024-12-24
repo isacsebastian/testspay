@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrated GSAP Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="coordinates">
+            <p>-2.911632198089882,L</p>
+            <p>-79.00263205962538 P</p>
+        </div>
+        <div class="coordinatesRight">
+            <p id="processedMoney">Processed Money: 9,950,999 USD</p>
+        </div>
+
+        <div class="borderLeft"></div>
+        <div class="borderRight"></div>
+        <div class="borderBottom"></div>
+
+        <nav class="nav">
+            <a href="#home">Home</a>
+            <a href="#section3">
+                <img src="spay.svg" alt="Logo de Spay" />
+            </a>
+            <a href="#contact">Aplica ya</a>
+        </nav>
+    </header>
+
+    <!-- Section 1: Title -->
+    <div class="section-wrapper">
+        <section id="home" class="home">
+            <h1 id="text" class="overlay-text">
+                La Solución de Cobro <br>
+                Global para Empresas<br>
+                Tecnológicas
+            </h1>
+            <div id="button-container">
+                <button class="contact-button">Contactar</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Section 2: Frame-to-Frame Animation -->
+    <div class="section-wrapper">
+        <section class="frame-container">
+            <img src="" alt="Animated Frame" class="centered-image" id="frameImage">
+        </section>
+    </div>
+
+    <!-- Section 3: Video Animation -->
+    <div class="section-wrapper">
+        <section id="section3">
+            <video autoplay muted loop>
+                <source src="assets/spayabout.webm" type="video/webm">
+                Your browser does not support the video tag.
+            </video>
+            <div id="text-container">
+                <div class="animated-text">Welcome to Section 3</div>
+                <div class="animated-text">Scroll Down to Explore More</div>
+                <div class="animated-text">Discover the Power of GSAP</div>
+            </div>
+        </section>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

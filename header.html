@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif !important;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: black;
+            min-height: 100vh;
+        }
+        
+        .header {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 97%;
+            height: 95vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 500;
+            border: 0 solid transparent;
+            padding: 0;
+            transform: translate(-50%, -50%);
+            background-color: transparent;
+        }
+
+        .coordinates {
+            background-color: transparent;
+            width: 400px;
+            height: 100px;
+            position: fixed;
+            top: 0%;
+            left: 5%;
+            display: flex;
+            line-height: 75px;
+            gap: 10px;
+            z-index: 500;
+            color: white;
+        }
+
+        .coordinatesRight {
+            background-color: transparent;
+            z-index: 500;      
+            width: 400px;
+            height: 100px;
+            position: fixed;
+            top: 0%;
+            right: -1%;
+            line-height: 75px;
+            color: white;
+        }
+
+        .borderLeft,
+        .borderRight,
+        .borderBottom {
+            position: fixed;
+            background-color: #D9D9D9;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .borderLeft {
+            top: 50%;
+            left: 1%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 85vh;
+        }
+
+        .borderRight {
+            top: 50%;
+            right: 1%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 85vh;
+        }
+
+        .borderBottom {
+            bottom: 2%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 1px;
+        }
+
+        .cornerTopLeft,
+        .cornerTopRight,
+        .cornerBottomLeft,
+        .cornerBottomRight {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            background-color: transparent;
+            z-index: 1100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .cornerSvg {
+            width: 15px;
+            height: 15px;
+            stroke: #D9D9D9;
+        }
+
+        .cornerTopLeft { top: 0; left: 0; }
+        .cornerTopRight { top: 0; right: 0; }
+        .cornerBottomLeft { bottom: 0; left: 0; }
+        .cornerBottomRight { bottom: 0; right: 0; }
+
+        .svg {
+            position: absolute;
+            top: -0.6%;
+            left: 50%;
+            transform: translate(-50%, 0);
+            width: 95%;
+            height: auto;
+            z-index: -1;
+        }
+
+        .svgPath {
+            fill: none;
+            stroke: #D9D9D9;
+            stroke-width: 1;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0%;
+            left: 50%;
+            transform: translate(-50%, 0);
+            display: flex;
+            align-items: center;
+            gap: 70px;
+            z-index: 500;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: normal;
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .nav a:hover {
+            color: #ff2900;
+        }
+
+        .nav img {
+            height: 24px;
+            width: auto;
+        }
+
+        .home {
+            height: 100vh;
+            background-color: rgb(85, 85, 85);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .overlay-text {
+            font-size: 2.5rem;
+            line-height: 1.4;
+            margin-bottom: 2rem;
+        }
+
+        .contact-button {
+            padding: 1rem 2rem;
+            background-color: #ff1212;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        
+        .frame-container {
+            position: relative;
+            height: 200vh;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .centered-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        #section3 {
+            background: #333;
+            position: relative;
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        #section3 video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            opacity: 0;
+        }
+
+        #text-container {
+            position: absolute;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .animated-text {
+            font-size: 2rem;
+            opacity: 0;
+            transform: translateY(50px);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="coordinates">
+            <p>-2.911632198089882,L</p>
+            <p>-79.00263205962538 P</p>
+        </div>
+        <div class="coordinatesRight">
+            <p id="processedMoney">Processed Money: 9,950,999 USD</p>
+        </div>
+
+        <div class="borderLeft"></div>
+        <div class="borderRight"></div>
+        <div class="borderBottom"></div>
+
+        <div class="cornerTopLeft">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" class="cornerSvg">
+                <path d="M6 0V6.25V12.5" stroke="#D9D9D9" />
+                <path d="M0 6L6.25 6L12.5 6" stroke="#D9D9D9" />
+            </svg>
+        </div>
+        <div class="cornerTopRight">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" class="cornerSvg">
+                <path d="M6 0V6.25V12.5" stroke="#D9D9D9" />
+                <path d="M0 6L6.25 6L12.5 6" stroke="#D9D9D9" />
+            </svg>
+        </div>
+        <div class="cornerBottomLeft">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" class="cornerSvg">
+                <path d="M6 0V6.25V12.5" stroke="#D9D9D9" />
+                <path d="M0 6L6.25 6L12.5 6" stroke="#D9D9D9" />
+            </svg>
+        </div>
+        <div class="cornerBottomRight">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" class="cornerSvg">
+                <path d="M6 0V6.25V12.5" stroke="#D9D9D9" />
+                <path d="M0 6L6.25 6L12.5 6" stroke="#D9D9D9" />
+            </svg>
+        </div>
+
+        <header class="header">
+            <svg class="svg" viewBox="0 0 1326 31" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M0 1H357.584L386.975 30H934.127L962.538 1L1326 1" stroke="#D9D9D9" class="svgPath"/>
+            </svg>
+
+            <nav class="nav">
+                <a href="#home">Home</a>
+                <a href="#spay">
+                    <img src="spay.svg" alt="Logo de Spay" />
+                </a>
+                <a href="#contact">Aplica ya</a>
+            </nav>
+        </header>
+    </div>
+    <div class="Title">
+        <section id="home" class="home">
+            <h1 id="text" class="overlay-text">
+                La Solución de Cobro <br>
+                Global para Empresas<br>
+                Tecnológicas
+            </h1>
+            <div id="button-container">
+                <button class="contact-button">Contactar</button>
+            </div>
+        </section>
+    </div>
+    <div class="Frame">
+        <section class="frame-container">
+            <img src="" alt="Animated Frame" class="centered-image" id="frameImage">
+        </section>
+    </div>
+
+    <div class="Video">
+        <section id="section3">
+            <video autoplay muted loop>
+                <source src="assets/spayabout.webm" type="video/webm">
+                Your browser does not support the video tag.
+            </video>
+            <div id="text-container">
+                <div class="animated-text">Welcome to Section 3</div>
+                <div class="animated-text">Scroll Down to Explore More</div>
+                <div class="animated-text">Discover the Power of GSAP</div>
+            </div>
+        </section>
+    </div>
+    <script>
+        let processedMoney = 9950999;
+        const moneyElement = document.getElementById('processedMoney');
+        let isInitialAnimationDone = false;
+
+        // Animación inicial
+        const initialInterval = setInterval(() => {
+            if (processedMoney >= 10000000) {
+                clearInterval(initialInterval);
+                isInitialAnimationDone = true;
+                startDailyIncrement();
+                return;
+            }
+            processedMoney += 1000;
+            updateMoneyDisplay();
+        }, 30);
+
+        function startDailyIncrement() {
+            const increment = 100;
+            const target = 15000000;
+            const intervalTime = (24 * 60 * 60 * 1000) / 365;
+
+            setInterval(() => {
+                if (processedMoney < target) {
+                    processedMoney += increment;
+                    updateMoneyDisplay();
+                }
+            }, intervalTime);
+        }
+
+        function updateMoneyDisplay() {
+            moneyElement.textContent = `Processed Money: ${processedMoney.toLocaleString('en-US')} USD`;
+        }
+
+        // Animación de texto en la sección
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        const TOTAL_FRAMES = 64;
+        const IMAGE_BASE_URL = "https://www.apple.com/105/media/us/airpods-pro/2022/d2deeb8e-83eb-48ea-9721-f567cf0fffa8/anim/hero/large/";
+
+        function getImageUrl(frame) {
+            return `${IMAGE_BASE_URL}${frame.toString().padStart(4, '0')}.png`;
+        }
+
+        const frameImage = document.getElementById('frameImage');
+        frameImage.src = getImageUrl(1);
+
+        gsap.to({}, {
+            scrollTrigger: {
+                trigger: ".frame-container",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+                markers: true,
+                onUpdate: (self) => {
+                    const frame = Math.round(self.progress * (TOTAL_FRAMES - 1)) + 1;
+                    frameImage.src = getImageUrl(frame);
+                },
+            },
+        });
+
+         // Animación del video al hacer scroll
+         gsap.to("#section3 video", {
+            scrollTrigger: {
+                trigger: "#section3",
+                start: "top top",
+                end: "bottom top",
+                scrub: true,
+                pin: true,
+                markers: true,
+            },
+            opacity: 1,
+        });
+
+        // Animación de texto en la sección
+        const textLines = document.querySelectorAll("#text-container .animated-text");
+        textLines.forEach((line, index) => {
+            gsap.fromTo(line, {
+                opacity: 0,
+                y: 50,
+            }, {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                delay: index * 0.5,
+                scrollTrigger: {
+                    trigger: "#section3",
+                    start: "top center",
+                    end: "bottom center",
+                    scrub: true,
+                    markers: true,
+                },
+            });
+        });
+    </script>
+</body>
+</html>

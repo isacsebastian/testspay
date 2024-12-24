@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Section</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <style>
+        .home {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .overlay-text {
+            font-size: 2.5rem;
+            line-height: 1.4;
+            margin-bottom: 2rem;
+        }
+
+        .contact-button {
+            padding: 1rem 2rem;
+            background-color: #000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <section id="home" class="home">
+        <h1 id="text" class="overlay-text">
+            La Solución de Cobro <br>
+            Global para Empresas<br>
+            Tecnológicas
+        </h1>
+        <div id="button-container">
+            <button class="contact-button">Contactar</button>
+        </div>
+    </section>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        const animation = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#home",
+                start: "top top",
+                end: "bottom top",
+                scrub: true,
+                pin: true,
+                markers: true
+            }
+        });
+
+        animation
+            .to("#text", { opacity: 0, duration: 1 }, 0)
+            .to("#button-container", { opacity: 0, duration: 1 }, 0);
+    </script>
+</body>
+</html>
